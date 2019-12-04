@@ -1,0 +1,86 @@
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Github actions tutorial</title>
+		<script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"> </script>
+		<script type="text/javascript" src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"> </script>
+		<script type="text/javascript" src="GeneFeature.js"> </script>
+		<script type="text/javascript">
+			let gene_feature = new GeneFeature('TATA box', 'TATAAA');
+			let special_feature = new GeneFeature(123, 123);
+
+			$(document).ready(function(){
+				$("#name").append(" " + gene_feature.getName());
+				$("#sequence").append(" " + gene_feature.getSequence());
+			});
+
+			let RNA_sequence = gene_feature.transcribe();
+			function transcribe(){
+				document.getElementById("#RNA").append("Transcript: " + RNA_sequence);
+			}
+
+		</script>
+		<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+	</head>
+
+
+	<body>
+
+		<nav class="navbar navbar-expand-lg navbar-dark bg-primary navbar-transparent navbar-dark bg-primary">
+
+		<a class="navbar-brand">Github Actions tutorial</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" id="menuBurgerButton">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarColor01">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link">Introduction</a>
+				</li>
+
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">Setting the stack</a>
+					<div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 37px, 0px); top: 0px; left: 0px; will-change: transform;">
+						<a class="dropdown-item">Download and install</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<h1> Setting up your documentation with automated github actions</h1>
+				</div>
+
+				<div class="col-12">
+
+					<div class="card">
+						<div class="card-body">
+							<div id="name">Feature Name:</div>
+							<div id="sequence">Feature sequence:</div>
+							<div id="#RNA"></div>
+						</div>
+						<div class="card-footer">
+							<button type="button" class="btn btn-primary" onclick="transcribe()">
+								Transcribe
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</body>
+
+
+
+
+</html>
