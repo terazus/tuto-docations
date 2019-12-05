@@ -85,3 +85,7 @@ em {
     height: 75px;
     visibility: hidden;
 }
+
+.mainContainer a {
+    color: #28A745 !important;
+}

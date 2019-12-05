@@ -271,11 +271,11 @@ jobs:
 						<em>actions/checkout@v1</em> which code is available <a href="" target="_blank" class="checkout">here</a>. We then wish to
 						setup a <em>node.js</em> version on our VM and, again, use an intergrated action which you can find
 						<a class="nodeSetup" href="" target="_blank">here</a>. Note how this time we are able to pass an extra parameter with the
-						<em>with</em> keyword, that allows us to select a specific version of our tool. <br>
+						<em>with</em> keyword, that allows us to select a specific version of our tool. <br> <br>
 						Now that our code is cloned and our node version is selected we can install our libraries with <em>npm install</em>. Here we define
 						step with a name that will be displayed in the github console to indicate at which step the workflow is. <br>
 						Everything is setup up now, so we can trigger the generation of our documentation with the command <em> npm run doc</em>. <br>
-						We are now at the final step which involves commit back to the current branch.
+						We are now at the final step which involves committing back to the current branch.
 					</p>
 					<pre class="code">
 - name: Commit to repository
@@ -290,7 +290,7 @@ jobs:
         git config user.name "${GITHUB_ACTOR}"
         git remote set-url --push origin https://your_username:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY
         git checkout ${GITHUB_REF##*/}
-        git add source/html/
+        git add docs/
         git diff --staged --quiet || (git commit -m "${COMMIT_MSG}"; git push)
 					</pre>
 					<p>
@@ -315,11 +315,30 @@ jobs:
 			<section class="row">
 				<div class="col col-12">
 					<h2> Conclusion</h2>
+					<p>
+						I started using GitHub Actions for our new project as a replacement to travis.ci. As I explored
+						the functionality, I discovered how powerful it was to automate the most boring tasks. One could
+						imagine deployments to multiple cloud systems or integration with any service out there. <br>
+						Actions are even more exiting than presented here. The technology running behind the scene is docker, which
+						means anyone can create its own integrated actions through the interaction of dockerfile and bash scripts.
+					</p>
 				</div>
 			</section>
 
-
 		</div>
+
+		<nav class="navbar navbar-dark">
+			<div>
+				<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
+					<img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" />
+				</a>
+				<span style="color:white;">
+					This work is licensed under a
+					<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
+						Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+				</span>
+			</div>
+		</nav>
 
 		<!--
 		<div class="container">
