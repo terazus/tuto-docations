@@ -5,10 +5,10 @@
 		<title>Github actions tutorial</title>
 		<script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"> </script>
 		<script type="text/javascript" src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"> </script>
-		<script type="text/javascript" src="GeneFeature.js"> </script>
-		<script type="text/javascript">
-			let gene_feature = new GeneFeature('TATA box', 'TATAAA');
-			let special_feature = new GeneFeature(123, 123);
+		<script type="module" src="./components/GeneFeature.js"> </script>
+		<script type="module">
+			import {GeneFeature} from './components/GeneFeature.js'
+			let gene_feature = new GeneFeature('My custom DNA Feature', 'TATACGATCGCGCATCGA');
 
 			$(document).ready(function(){
 				$("#name").append(" " + gene_feature.getName());
@@ -16,12 +16,19 @@
 			});
 
 			let RNA_sequence = gene_feature.transcribe();
-			function transcribe(){
-				document.getElementById("#RNA").append("Transcript: " + RNA_sequence);
+			let translated = gene_feature.translate();
+
+			window.transcribe = function(){
+				document.getElementById("#RNA").innerHTML = "Transcript: " + RNA_sequence;
+			};
+
+			window.translate = function(){
+				document.getElementById("#Translated").innerHTML = "Protein sequence: " + translated;
 			}
 
 		</script>
-		<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+		<link rel="stylesheet" href="main.css">
 	</head>
 
 
@@ -53,28 +60,108 @@
 		</div>
 	</nav>
 
-		<div class="container">
+		<div class="container mainContainer">
 			<div class="row">
 				<div class="col-12">
-					<h1> Setting up your documentation with automated github actions</h1>
-				</div>
+					<h1> Automate your documentation with GitHub Actions</h1>
+					<quote>Created 12th December 2019 by Terazus</quote>
+					<hr>
 
-				<div class="col-12">
-
-					<div class="card">
-						<div class="card-body">
-							<div id="name">Feature Name:</div>
-							<div id="sequence">Feature sequence:</div>
-							<div id="#RNA"></div>
+					<div id="introduction">
+						<h2> Introduction: </h2>
+						<p>
+							In this tutorial we are going to explore source code documentation through continuous integration
+							using a set of open source tools and a simple example. <br>
+							The first part of this tutorial will focus on setting up the project and writing the code and its documentation.
+							<br>
+							The second part will focus on how to continuously integrate your documentation. It will be language agnostic
+							and help you to set up a pipeline to automate the generation of the documentation.
+						</p>
+						<div class="summary">
+							<ul>
+								<li class="item">
+									<b>Time:</b> 1h
+								</li>
+								<li class="item">
+									<b>Difficulty:</b> medium
+								</li>
+								<li class="item">
+									<b>Stack:</b> JavaScript
+								</li>
+								<li class="item">
+									<b>Tools:</b> jsdoc (first part), GitHub (second part)
+								</li>
+								<li class="item">
+									<b>Requirements:</b> have a GitHub account; have NPM and Git installed.
+								</li>
+							</ul>
 						</div>
-						<div class="card-footer">
-							<button type="button" class="btn btn-primary" onclick="transcribe()">
-								Transcribe
-							</button>
+						<p>
+							During the course of this tutorial, we are going to create a small DNA feature containing a name and a sequence, and represent
+							it on the DOM as a card.<br>
+							We will then create two buttons: one two trigger the transcription of the sequence into a RNA sequence, the other
+							to trigger its translation into a protein primary sequence.<br>
+							Here is it how it will look once implemented:
+						</p>
+						<div class="col col-4 centered">
+
+							<div class="card">
+								<div class="card-header">
+									<div id="name"></div>
+								</div>
+								<div class="card-body">
+									<div id="sequence">Feature sequence:</div>
+									<div id="#RNA"></div>
+									<div id="#Translated"></div>
+								</div>
+								<div class="card-footer">
+									<button id="transcribe" type="button" class="btn btn-primary" onclick="transcribe()">
+										Transcribe
+									</button>
+									<button type="button" class="btn btn-primary" onclick="translate()">
+										Translate
+									</button>
+								</div>
+							</div>
+						</div>
+						<div class="plan">
+							<h3>Tutorial plan:</h3>
+							<ul>
+								<li> Setting up the project on GitHub</li>
+								<li> Creating the components </li>
+								<li> Write the documentation </li>
+								<li> Generated a user-friendly documentation document</li>
+								<li> Ensure it's always updated with a workflow</li>
+							</ul>
 						</div>
 					</div>
 				</div>
+
 			</div>
+
+			<div class="row" id="settingUp">
+				<h2> Setting up the project:</h2>
+				<p>
+					The final step of this tutorial will involve using GitHub Actions, so if not already not, head to
+					<a href="https://github.com" target="_blank">github.com</a> and create a new account.
+					You can then create a new project and clone it locally. We will not go through this process as there
+					are really plenty of tutorials out there. <br>
+					At the root of your project, create:
+				</p>
+				<ul>
+					<li> A file named package.json</li>
+					<li> A file named documentation.conf.json</li>
+					<li> A directory named src</li>
+					<li>
+						Inside src create:
+						<ul>
+							<li>A file named index.html</li>
+							<li>A file directory named components</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+
 		</div>
 
 

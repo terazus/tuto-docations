@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.mainContainer {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#introduction {
+    margin-top:40px;
+}
+
+quote {
+    font-style: italic;
+}
+
+.centered {
+    margin-left:auto;
+    margin-right:auto;
+    left:0;
+    right:0;
+    display:block;
+}
+
+.card {
+    margin-bottom:20px;
+}
+
+.row {
+    margin-top: 40px;
+}
