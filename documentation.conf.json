@@ -4,6 +4,7 @@
   ],
   "source": {
     "include": ["src/"],
+    "exclude": ["src/node_modules/"],
     "includePattern": "\\.(js)$",
     "excludePattern": "\\.(spec.js)$"
   },
