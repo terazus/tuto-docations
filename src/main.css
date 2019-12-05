@@ -78,12 +78,14 @@ em {
     background-color: #032F62 !important;
 }
 
-*[introduction]:before {
+
+img.buildImg {
+    max-width: 400px;
+    margin-left:auto;
+    margin-right: auto;
+    left:0;
+    right:0;
     display: block;
-    content: " ";
-    margin-top: -75px;
-    height: 75px;
-    visibility: hidden;
 }
 
 .mainContainer a {
