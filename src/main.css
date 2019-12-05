@@ -9,8 +9,8 @@ h3 {
     font-size: 22px;
     text-decoration: underline;
 }
-h2 {
-    color: #6D426D;
+h1, h2, h3 {
+    color: #032F62;
 }
 
 .mainContainer {
@@ -94,4 +94,12 @@ img.buildImg {
 
 .no-bullet {
     list-style: none;
+}
+
+.navBottom {
+    color:white;
+}
+
+pre {
+    margin: 20px auto;
 }
