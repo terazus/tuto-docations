@@ -91,3 +91,7 @@ img.buildImg {
 .mainContainer a {
     color: #28A745 !important;
 }
+
+.no-bullet {
+    list-style: none;
+}

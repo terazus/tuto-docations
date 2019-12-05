@@ -1,165 +1,174 @@
 <html>
 
-	<head>
-		<meta charset="utf-8">
-		<title>Github actions tutorial</title>
-		<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"> </script>
-		<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"> </script>
-		<script type="module" src="./components/GeneFeature.js"> </script>
-		<script type="module">
-			import GeneFeature from './components/GeneFeature.js'
-			let gene_feature = new GeneFeature('My custom DNA Feature', 'TATACGATCGCGCATCGA');
+<head>
+	<meta charset="utf-8">
+	<title>Github actions tutorial</title>
+	<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"> </script>
+	<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"> </script>
+	<script type="module" src="./components/GeneFeature.js"> </script>
+	<script type="module">
+		import GeneFeature from './components/GeneFeature.js'
+		let gene_feature = new GeneFeature('My custom DNA Feature', 'TATACGATCGCGCATCGA');
 
-			$(document).ready(function(){
-				$("#name").append(" " + gene_feature.getName());
-				$("#sequence").append(" " + gene_feature.getSequence());
+		$(document).ready(function(){
+			$("#name").append(" " + gene_feature.getName());
+			$("#sequence").append(" " + gene_feature.getSequence());
+		});
+
+		let RNA_sequence = gene_feature.transcribe();
+		let translated = gene_feature.translate();
+
+		window.transcribe = function(){
+			document.getElementById("RNA").innerHTML = "Transcript: " + RNA_sequence;
+		};
+		window.translate = function(){
+			document.getElementById("Translated").innerHTML = "Protein sequence: " + translated;
+		}
+
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			let resources = [
+				{
+					name: "jsdoc",
+					link: "https://devdocs.io/jsdoc/"
+				},
+				{
+					name: "repo",
+					link: "https://github.com/terazus/tuto-docations"
+				},
+				{
+					name: "localhost",
+					link: "http://localhost:5000/src"
+				},
+				{
+					name: "actionConditions",
+					link: "https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#on"
+				},
+				{
+					name: "checkout",
+					link: "https://github.com/actions/checkout"
+				},
+				{
+					name: "nodeSetup",
+					link: "https://github.com/actions/setup-node"
+				}
+			];
+
+			resources.forEach(function (resource) {
+				$("a." + resource.name).each(function (index) {
+					this.href = resource.link;
+				})
 			});
+		});
 
-			let RNA_sequence = gene_feature.transcribe();
-			let translated = gene_feature.translate();
-
-			window.transcribe = function(){
-                document.getElementById("RNA").innerHTML = "Transcript: " + RNA_sequence;
-			};
-			window.translate = function(){
-				document.getElementById("Translated").innerHTML = "Protein sequence: " + translated;
-			}
-
-		</script>
-		<script type="text/javascript">
-            $(document).ready(function() {
-                let resources = [
-                    {
-                        name: "jsdoc",
-                        link: "https://devdocs.io/jsdoc/"
-                    },
-					{
-					    name: "repo",
-						link: "https://github.com/terazus/tuto-docations"
-					},
-					{
-					    name: "localhost",
-						link: "http://localhost:5000/src"
-					},
-					{
-					    name: "actionConditions",
-						link: "https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#on"
-					},
-					{
-					    name: "checkout",
-						link: "https://github.com/actions/checkout"
-					},
-					{
-					    name: "nodeSetup",
-						link: "https://github.com/actions/setup-node"
-					}
-                ];
-
-                resources.forEach(function (resource) {
-                    $("a." + resource.name).each(function (index) {
-                        this.href = resource.link;
-                    })
-                });
-            });
-
-		</script>
-		<script>
-            let shiftWindow = function() { scrollBy(0, -70) };
-            window.addEventListener("hashchange", shiftWindow);
-            if (window.location.hash) shiftWindow();
-		</script>
-		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-		<link rel="stylesheet" href="main.css">
-	</head>
+	</script>
+	<script>
+		let shiftWindow = function() { scrollBy(0, -70) };
+		window.addEventListener("hashchange", shiftWindow);
+		if (window.location.hash) shiftWindow();
+	</script>
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="main.css">
+</head>
 
 
-	<body>
+<body>
 
-		<nav class="fixed-top navbar-static-top navbar navbar-expand-lg navbar-dark bg-primary navbar-transparent navbar-dark bg-primary">
-			<a class="navbar-brand" href="#topPage">Github Actions tutorial</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" id="menuBurgerButton">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+<nav class="fixed-top navbar-static-top navbar navbar-expand-lg navbar-dark bg-primary navbar-transparent navbar-dark bg-primary">
+	<a class="navbar-brand" href="#topPage">Github Actions tutorial</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" id="menuBurgerButton">
+		<span class="navbar-toggler-icon"></span>
+	</button>
 
-			<div class="collapse navbar-collapse" id="navbarColor01">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item">
-						<a class="nav-link" href="#introduction">Introduction</a>
-					</li>
+	<div class="collapse navbar-collapse" id="navbarColor01">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+				<a class="nav-link" href="#introduction">Introduction</a>
+			</li>
 
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">DocActions</a>
-						<div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 37px, 0px); top: 0px; left: 0px; will-change: transform;">
-							<a class="dropdown-item" href="#setting">Setup</a>
-							<a class="dropdown-item" href="#local">Test locally</a>
-							<a class="dropdown-item" href="#GH_actions">Create the workflow</a>
-						</div>
-					</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">DocActions</a>
+				<div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 37px, 0px); top: 0px; left: 0px; will-change: transform;">
+					<a class="dropdown-item" href="#setting">Setup</a>
+					<a class="dropdown-item" href="#local">Test locally</a>
+					<a class="dropdown-item" href="#GH_actions">Create the workflow</a>
+				</div>
+			</li>
+		</ul>
+	</div>
+</nav>
+
+<div class="container mainContainer" id="topPage">
+
+	<section class="row">
+		<div class="col col-12 topImg">
+			<img src="assets/actions_header.png">
+		</div>
+	</section>
+
+	<section class="row">
+		<div class="col col-12">
+			<h1> Automate your code documentation with GitHub Actions</h1>
+			<blockquote>Created 12th December 2019 by Terazus</blockquote>
+			<hr>
+		</div>
+
+		<div class="col col-12">
+			<h3>Getting prepared:</h3>
+			<ul class="no-bullet">
+				<li><b>Time:</b> < 1h.</li>
+				<li><b>Level:</b> Easy.</li>
+				<li><b>Requirements:</b> Have npm/git installed; have a github account; Have a command line tool.</li>
+			</ul>
+		</div>
+
+	</section>
+
+	<section class="row" id="introduction">
+		<div class="col col-12">
+			<h2> Introduction: </h2>
+			<p>
+				In this tutorial we are going to explore the new GitHub functionality that was released during
+				the GitHub Galaxy event that took place in November 2019. <br>
+				Some of you may have noticed a new tab in you GitHub repositories called <em>Actions</em> which are
+				automated workflow running on GitHub virtual machines (referred to as VM in this tutorial).
+			</p>
+			<img src="assets/actions_tab.png" alt="The new GitHub action tab">
+			<p>
+				Throughout this tutorial we will explore this new functionality using a simple JavaScript application
+				for which we want to automate some development steps. <br>
+				The application will contain a very simple JavaScript class (and a data file) for which we wrote
+				some code documentation using <a href="" target="_blank" class="jsdoc">jsdoc syntax</a>. <br>
+				The documentation is renewed using the command line: <br>
+			</p>
+			<pre class="code"> jsdoc -c documentation.conf.json </pre>
+			<p>
+				<b>Note:</b> <em>"-c"</em> points to a configuration file. We will set everything later on by forking a git repository. <br>
+				We want to automate the process of generating the documentation through this command line and always keep
+				the documentation on each of our github branches up-to-date with the code on that branch.
+			</p>
+			<div class="plan">
+				<h3>Plan:</h3>
+				<ul>
+					<li> <a href="#setting">Setting up the code </a></li>
+					<li> <a href="#local">Generating the documentation locally </a></li>
+					<li> <a href="#GH_actions">Generating the documentation on GitHub using a workflow</a></li>
 				</ul>
 			</div>
-		</nav>
+		</div>
+	</section>
 
-		<div class="container mainContainer" id="topPage">
+	<section class="row" id="setting">
+		<div class="col col-12">
+			<h2> Setting up the project:</h2>
 
-			<section class="row">
-				<div class="col col-12 topImg">
-					<img src="assets/actions_header.png">
-				</div>
-			</section>
-
-			<section class="row">
-				<div class="col col-12">
-					<h1> Automate your code documentation with GitHub Actions</h1>
-					<blockquote>Created 12th December 2019 by Terazus</blockquote>
-					<hr>
-				</div>
-			</section>
-
-			<section class="row" id="introduction">
-				<div class="col col-12">
-					<h2> Introduction: </h2>
-					<p>
-						In this tutorial we are going to explore the new GitHub functionality that was released during
-						the GitHub Galaxy event that took place in November 2019. <br>
-						Some of you may have noticed a new tab in you GitHub repositories called <em>Actions</em> which are
-						automated workflow running on GitHub virtual machines (referred to as VM in this tutorial). <br>
-						automated workflow running on GitHub virtual machines (referred to as VM in this tutorial). <br>
-					</p>
-					<img src="assets/actions_tab.png" alt="The new GitHub action tab">
-					<p>
-						Throughout this tutorial we will explore this new functionality using a simple JavaScript application
-						for which we want to automate some development steps. <br>
-						The application will contain a very simple JavaScript class (and a data file) who which we have written
-						some code documentation using <a href="" target="_blank" class="jsdoc">jsdoc syntax</a>. <br>
-						The documentation is renewed using the command line: <br>
-					</p>
-					<pre class="code"> jsdoc -c documentation.conf.json </pre>
-					<p>
-						<b>Note:</b> <em>"-c"</em> points to a configuration file. We will set everything later on by forking a git repo. <br>
-						We want to automate the process of generating the documentation through this command line and always keep
-						the documentation on each of our github branches up-to-date with the code on that branch.
-					</p>
-					<div class="plan">
-						<h3>Plan:</h3>
-						<ul>
-							<li> <a href="#setting">Setting up the code </a></li>
-							<li> <a href="#local">Generating the documentation locally </a></li>
-							<li> <a href="#GH_actions">Generating the documentation on GitHub using a workflow</a></li>
-						</ul>
-					</div>
-				</div>
-			</section>
-
-			<section class="row" id="setting">
-				<div class="col col-12">
-					<h2> Setting up the project:</h2>
-
-					<p>
-						The source code required by this tutorial has been created for you and can be found inside this tutorial
-						directory. Head to <a class="repo" href="" target="_blank">this GitHub repo</a> and fork the repository to make it your own. Now clone it locally
-						to obtain this tree structure:
-					</p>
-					<pre class="code">
+			<p>
+				The source code required by this tutorial has been created for you and can be found inside this tutorial
+				directory. Head to <a class="repo" href="" target="_blank">this GitHub repo</a> and fork the repository to make it your own. Now clone it locally
+				to obtain this tree structure:
+			</p>
+			<pre class="code">
 │   .gitignore
 │   documentation.conf.json
 │   package.json
@@ -176,60 +185,60 @@
     └───components
             codon.js
             GeneFeature.js</pre>
-					<p> Now just run the above command to install all dependencies.
-					</p>
-					<pre class="code"> npm install</pre>
-					<p>
-						The <em>package.json</em> file contains all the library declaration npm needs to be aware of for installation. Some of these
-						libraries are used by the tutorial itself (like bootstrap), so if you only want the hard dependencies run the install in production mode. Once installed you can pop the application using:
-					</p>
-					<pre class="code">serve</pre>
-					<p>
-						Now go to <a href="" class="localhost" target="_blank">http://localhost:5000/src</a>. If you don't see this page then something went wrong. You can use another web server if you feel like it (Apache, NGINX, ...),
-						it doesn't really matter.
-					</p>
-				</div>
-			</section>
+			<p> Now just run the above command to install all dependencies.
+			</p>
+			<pre class="code"> npm install</pre>
+			<p>
+				The <em>package.json</em> file contains all the library declaration npm needs to be aware of for installation. Some of these
+				libraries are used by the tutorial itself (like bootstrap), so if you only want the hard dependencies run the install in production mode. Once installed you can pop the application using:
+			</p>
+			<pre class="code">serve</pre>
+			<p>
+				Now go to <a href="" class="localhost" target="_blank">http://localhost:5000/src</a>. If you don't see this page then something went wrong. You can use another web server if you feel like it (Apache, NGINX, ...),
+				it doesn't really matter.
+			</p>
+		</div>
+	</section>
 
-			<section class="row" id="local">
-				<div class="col col-12">
-					<h2>Generate the documentation locally</h2>
-					<p>
-						This step is going to be pretty easy as the class documentation has already been written for you. If you wish to explore it a little bit, just go to
-						<em>src/components/</em> to find the <em>GeneFeature.js</em> file. Now run:
-					</p>
-					<pre class="code"> npm run doc </pre>
-					<p>
-						This is an alias command borrowed from <em>package.json</em> under the <em>scripts</em> tag. Have a look
-						and see how the <em>doc</em> command actually runs jsdoc in the background. All configurations for jsdoc
-						to generate that documentation are located inside <em>documentation.conf.json</em>. Have a you look if you wish to
-						customize your documentation (change template and theme, change recursion depth, set up which files to be included or excluded, ...).
-						By running this command, your jsdoc comments in the code are parsed and translated into HTML, the results being outputted into the
-						<em>docs</em> directory. Here is how it should look like:
-					</p>
-					<iframe src="../documentation/GeneFeature.html" width="100%" height="800px" onLoad="self.scrollTo(0,0)"></iframe>
-					<p>
-						With this system set up, every time we write a new piece of code and its documentation or modify an existing one, we need to manually rerun the npm command
-						that parses the files and generate our documentation in HTML. We then need to add these files to the current commit and push them on the remote branch.
-						<br> Pretty annoying and boring hein? Let's automate that so that we don't have to manually run these set of commands on every commit.
-					</p>
-				</div>
-			</section>
+	<section class="row" id="local">
+		<div class="col col-12">
+			<h2>Generate the documentation locally</h2>
+			<p>
+				This step is going to be pretty easy as the class documentation has already been written for you. If you wish to explore it a little bit, just go to
+				<em>src/components/</em> to find the <em>GeneFeature.js</em> file. Now run:
+			</p>
+			<pre class="code"> npm run doc </pre>
+			<p>
+				This is an alias command borrowed from <em>package.json</em> under the <em>scripts</em> tag. Have a look
+				and see how the <em>doc</em> command actually runs jsdoc in the background. All configurations for jsdoc
+				to generate that documentation are located inside <em>documentation.conf.json</em>. Have a you look if you wish to
+				customize your documentation (change template and theme, change recursion depth, set up which files to be included or excluded, ...).
+				By running this command, your jsdoc comments in the code are parsed and translated into HTML, the results being outputted into the
+				<em>docs</em> directory. Here is how it should look like:
+			</p>
+			<iframe src="../documentation/GeneFeature.html" width="100%" height="800px" onLoad="self.scrollTo(0,0)"></iframe>
+			<p>
+				With this system set up, every time we write a new piece of code and its documentation or modify an existing one, we need to manually rerun the npm command
+				that parses the files and generate our documentation in HTML. We then need to add these files to the current commit and push them on the remote branch.
+				<br> Pretty annoying and boring hein? Let's automate that so that we don't have to manually run these set of commands on every commit.
+			</p>
+		</div>
+	</section>
 
-			<section class="row" id="GH_actions">
-				<div class="col col-12">
-					<h2> Setting up an automated workflow</h2>
-					<p>
-						Now that we know our documentation works correctly, we will setup a GitHub workflow that pulls the current branch, triggers the <em>npm run doc</em> command and
-						pushes back the generated HTML files to the same branch. <br>
-						That piece of code has already been created for the sake of showcasing a real working example. This means the repository of this tutorial has this script running
-						on each commit. <br>
-						Open the <em>.github</em> directory: it contains all features, configurations and scripts related to the GitHub platform. For instance, some repositories may have a
-						<em>ISSUE_TEMPLATE</em> directory to set up templates for users to open new issues. <br>
-						Now open the <em>workflows</em> subdirectory which will contain a list of yml files: one for each workflow you want to run.
-						You should see a <em>documentation.yml</em> file that contains the following code:
-					</p>
-					<pre class="code">
+	<section class="row" id="GH_actions">
+		<div class="col col-12">
+			<h2> Setting up an automated workflow</h2>
+			<p>
+				Now that we know our documentation works correctly, we will setup a GitHub workflow that pulls the current branch, triggers the <em>npm run doc</em> command and
+				pushes back the generated HTML files to the same branch. <br>
+				That piece of code has already been created for the sake of showcasing a real working example. This means the repository of this tutorial has this script running
+				on each commit. <br>
+				Open the <em>.github</em> directory: it contains all features, configurations and scripts related to the GitHub platform. For instance, some repositories may have a
+				<em>ISSUE_TEMPLATE</em> directory to set up templates for users to open new issues. <br>
+				Now open the <em>workflows</em> subdirectory which will contain a list of yml files: one for each workflow you want to run.
+				You should see a <em>documentation.yml</em> file that contains the following code:
+			</p>
+			<pre class="code">
 name: Doc
 on: [push]
 jobs:
@@ -259,25 +268,25 @@ jobs:
         git add docs/
         git diff --staged --quiet || (git commit -m "${COMMIT_MSG}"; git push)
 					</pre>
-					<p>
-						The fully working pipeline is in this file so let's review it together. <br>
-						The first line indicate the name under which the workflow will appear in the Actions tab. The second line indicates
-						under which conditions should this workflow be executed. Here we choose push only but for a full list of
-						conditions, check <a href="" target="_blank" class="actionConditions">this link</a>. <br>
-						We then declare the <em>jobs</em> and <em>build</em> tag to start our workflow. Using the <em>runs-on</em> key we select
-						an operating system: Mac OS, Windows or Linux (note that there are limitations on Mac OS) and then declare the sequential
-						<em>steps</em> we want to execute. <br>
-						We first want to pull the current code from this repository inside the VM. To do that we use an integrated action called
-						<em>actions/checkout@v1</em> which code is available <a href="" target="_blank" class="checkout">here</a>. We then wish to
-						setup a <em>node.js</em> version on our VM and, again, use an intergrated action which you can find
-						<a class="nodeSetup" href="" target="_blank">here</a>. Note how this time we are able to pass an extra parameter with the
-						<em>with</em> keyword, that allows us to select a specific version of our tool. <br> <br>
-						Now that our code is cloned and our node version is selected we can install our libraries with <em>npm install</em>. Here we define
-						step with a name that will be displayed in the github console to indicate at which step the workflow is. <br>
-						Everything is setup up now, so we can trigger the generation of our documentation with the command <em> npm run doc</em>. <br>
-						We are now at the final step which involves committing back to the current branch.
-					</p>
-					<pre class="code">
+			<p>
+				The fully working pipeline is in this file so let's review it together. <br>
+				The first line indicate the name under which the workflow will appear in the Actions tab. The second line indicates
+				under which conditions should this workflow be executed. Here we choose push only but for a full list of
+				conditions, check <a href="" target="_blank" class="actionConditions">this link</a>. <br>
+				We then declare the <em>jobs</em> and <em>build</em> tag to start our workflow. Using the <em>runs-on</em> key we select
+				an operating system: Mac OS, Windows or Linux (note that there are limitations on Mac OS) and then declare the sequential
+				<em>steps</em> we want to execute. <br>
+				We first want to pull the current code from this repository inside the VM. To do that we use an integrated action called
+				<em>actions/checkout@v1</em> which code is available <a href="" target="_blank" class="checkout">here</a>. We then wish to
+				setup a <em>node.js</em> version on our VM and, again, use an intergrated action which you can find
+				<a class="nodeSetup" href="" target="_blank">here</a>. Note how this time we are able to pass an extra parameter with the
+				<em>with</em> keyword, that allows us to select a specific version of our tool. <br> <br>
+				Now that our code is cloned and our node version is selected we can install our libraries with <em>npm install</em>. Here we define
+				step with a name that will be displayed in the github console to indicate at which step the workflow is. <br>
+				Everything is setup up now, so we can trigger the generation of our documentation with the command <em> npm run doc</em>. <br>
+				We are now at the final step which involves committing back to the current branch.
+			</p>
+			<pre class="code">
 - name: Commit to repository
       env:
         GITHUB_TOKEN: ${{ secrets.github_token }}
@@ -293,75 +302,80 @@ jobs:
         git add docs/
         git diff --staged --quiet || (git commit -m "${COMMIT_MSG}"; git push)
 					</pre>
-					<p>
-						First, we set up some variables that we will reuse in the command: a github secret token
-						dynamically generated for your user account and a commit message. Not that your secret tokens should remain secret,
-						<b class="alert-warning">never ever commit hard coded user credentials!</b>.
-						Setting up these variable isn't required, but its nice to know we can do that for more complex behaviors.  <br> <br>
-						Note how this time the <em>run</em> keyword is followed by a pipe <em>|</em> to indicates that all following commands should be
-						executed sequentially. <br>
-						Using environment variables provided by GitHub, we can set our account name and email.
-						The next command line allows us to switch the communication protocol from <em>SSH</em> (default) to <em>HTTPS</em>. <br>
-						Using another environment variable named <em>${GITHUB_REF}</em> we extract the current branch name
-						and checkout from it. We can now add the generated files. <br>
-						Finally, we verify the difference between the two trees and push with the current commit message if necessary. Note that
-						trying to push a tree that has no difference with the current branch will result in an error preventing
-						the workflow to complete.
-					</p>
-					<p> Now, push that whole project to your github repository, go to Actions, and watch the magic.</p>
-					<div>
-						<img src="assets/build.png" alt="The workflow output from github" class="buildImg">
-					</div>
-				</div>
-			</section>
-
-			<section class="row">
-				<div class="col col-12">
-					<h2> Conclusion</h2>
-					<p>
-						I started using GitHub Actions for our new project as a replacement to travis.ci. As I explored
-						the functionality, I discovered how powerful it was to automate the most boring tasks. One could
-						imagine deployments to multiple cloud systems or integration with any service out there. <br>
-						Actions are even more exiting than presented here. The technology running behind the scene is docker, which
-						means anyone can create its own integrated actions through the interaction of dockerfile and bash scripts.
-					</p>
-				</div>
-			</section>
-
-		</div>
-
-		<nav class="navbar navbar-dark">
+			<p>
+				First, we set up some variables that we will reuse in the command: a github secret token
+				dynamically generated for your user account and a commit message. Not that your secret tokens should remain secret,
+				<b class="alert-warning">never ever commit hard coded user credentials!</b>.
+				Setting up these variable isn't required, but its nice to know we can do that for more complex behaviors.  <br> <br>
+				Note how this time the <em>run</em> keyword is followed by a pipe <em>|</em> to indicates that all following commands should be
+				executed sequentially. <br>
+				Using environment variables provided by GitHub, we can set our account name and email.
+				The next command line allows us to switch the communication protocol from <em>SSH</em> (default) to <em>HTTPS</em>. <br>
+				Using another environment variable named <em>${GITHUB_REF}</em> we extract the current branch name
+				and checkout from it. We can now add the generated files. <br>
+				Finally, we verify the difference between the two trees and push with the current commit message if necessary. Note that
+				trying to push a tree that has no difference with the current branch will result in an error preventing
+				the workflow to complete.
+			</p>
+			<p> Now, push that whole project to your github repository, go to Actions, and watch the magic.</p>
 			<div>
-				<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
-					<img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" />
-				</a>
-				<span style="color:white;">
+				<img src="assets/build.png" alt="The workflow output from github" class="buildImg">
+			</div>
+			<p>
+				You can now create as many new files that you want and write documentation for them. Whenever you push them
+				on the repository, the workflow is triggered, the documentation regenerated and pushed back to the branch.
+			</p>
+		</div>
+	</section>
+
+	<section class="row">
+		<div class="col col-12">
+			<h2> Conclusion</h2>
+			<p>
+				I started using GitHub Actions for our new project as a replacement to travis.ci. As I explored
+				the functionality, I discovered how powerful it was to automate the most boring tasks. One could
+				imagine deployments to multiple cloud systems or publish on the gh-page build (note: you will need
+				to generate a personal access token for that as <em>$GITHUB_TOKEN</em> doesn't have the right to trigger a build). <br>
+				Actions are even more exiting than presented here. The technology running behind the scene is docker, which
+				means anyone can create its own integrated actions through the interaction of dockerfile and bash scripts.
+			</p>
+		</div>
+	</section>
+
+</div>
+
+<nav class="navbar navbar-dark">
+	<div>
+		<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
+			<img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" />
+		</a>
+		<span style="color:white;">
 					This work is licensed under a
 					<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
 						Creative Commons Attribution-NonCommercial 4.0 International License</a>.
 				</span>
-			</div>
-		</nav>
+	</div>
+</nav>
 
-		<!--
-		<div class="container">
-			<div class="card">
-				<div class="card-header" id="name">
-				</div>
-				<div class="card-body">
-					<div id="sequence"></div>
-					<div id="RNA"></div>
-					<div id="Translated"></div>
-				</div>
-				<div class="card-footer">
-					<button type="button" class="btn btn-secondary" onclick="transcribe()">Transcribe</button>
-					<button type="button" class="btn btn-secondary" onclick="translate()">Translate</button>
-				</div>
-			</div>
-		</div>
-		-->
+<!--
+<div class="container">
+    <div class="card">
+        <div class="card-header" id="name">
+        </div>
+        <div class="card-body">
+            <div id="sequence"></div>
+            <div id="RNA"></div>
+            <div id="Translated"></div>
+        </div>
+        <div class="card-footer">
+            <button type="button" class="btn btn-secondary" onclick="transcribe()">Transcribe</button>
+            <button type="button" class="btn btn-secondary" onclick="translate()">Translate</button>
+        </div>
+    </div>
+</div>
+-->
 
-	</body>
+</body>
 
 
 
