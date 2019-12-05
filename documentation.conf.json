@@ -11,7 +11,7 @@
   "opts": {
     "recurse": true,
     "encoding": "utf8",
-    "destination": "./docs/",
+    "destination": "./documentation/",
     "template": "./node_modules/docdash"
   },
   "templates": {
