@@ -24,5 +24,5 @@ jobs:
         git config user.name "${GITHUB_ACTOR}"
         git remote set-url --push origin https://your_username:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY
         git checkout ${GITHUB_REF##*/}
-        git add documentation/
+        git add -f documentation/
         git diff --staged --quiet || (git commit -m "${COMMIT_MSG}"; git push)
