@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Github actions tutorial</title>
-		<script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"> </script>
-		<script type="text/javascript" src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"> </script>
+		<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"> </script>
+		<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"> </script>
 		<script type="module" src="./components/GeneFeature.js"> </script>
 		<script type="module">
 			import GeneFeature from './components/GeneFeature.js'
@@ -207,7 +207,7 @@
 						By running this command, your jsdoc comments in the code are parsed and translated into HTML, the results being outputted into the
 						<em>docs</em> directory. Here is how it should look like:
 					</p>
-					<iframe src="../docs/GeneFeature.html" width="100%" height="800px" onLoad="self.scrollTo(0,0)"></iframe>
+					<iframe src="../documentation/GeneFeature.html" width="100%" height="800px" onLoad="self.scrollTo(0,0)"></iframe>
 					<p>
 						With this system set up, every time we write a new piece of code and its documentation or modify an existing one, we need to manually rerun the npm command
 						that parses the files and generate our documentation in HTML. We then need to add these files to the current commit and push them on the remote branch.
