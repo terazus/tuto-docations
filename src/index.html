@@ -7,7 +7,7 @@
 		<script type="text/javascript" src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"> </script>
 		<script type="module" src="./components/GeneFeature.js"> </script>
 		<script type="module">
-			import {GeneFeature} from './components/GeneFeature.js'
+			import GeneFeature from './components/GeneFeature.js'
 			let gene_feature = new GeneFeature('My custom DNA Feature', 'TATACGATCGCGCATCGA');
 
 			$(document).ready(function(){
@@ -19,12 +19,36 @@
 			let translated = gene_feature.translate();
 
 			window.transcribe = function(){
-				document.getElementById("#RNA").innerHTML = "Transcript: " + RNA_sequence;
+                document.getElementById("RNA").innerHTML = "Transcript: " + RNA_sequence;
 			};
-
 			window.translate = function(){
-				document.getElementById("#Translated").innerHTML = "Protein sequence: " + translated;
+				document.getElementById("Translated").innerHTML = "Protein sequence: " + translated;
 			}
+
+		</script>
+		<script type="text/javascript">
+            $(document).ready(function() {
+                let resources = [
+                    {
+                        name: "jsdoc",
+                        link: "https://devdocs.io/jsdoc/"
+                    },
+					{
+					    name: "repo",
+						link: "https://github.com/terazus/tuto-docations"
+					},
+					{
+					    name: "localhost",
+						link: "http://localhost:5000/src"
+					}
+                ];
+
+                resources.forEach(function (resource) {
+                    $("a." + resource.name).each(function (index) {
+                        this.href = resource.link;
+                    })
+                });
+            });
 
 		</script>
 		<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
@@ -35,133 +59,177 @@
 	<body>
 
 		<nav class="navbar navbar-expand-lg navbar-dark bg-primary navbar-transparent navbar-dark bg-primary">
+			<a class="navbar-brand">Github Actions tutorial</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" id="menuBurgerButton">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-		<a class="navbar-brand">Github Actions tutorial</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" id="menuBurgerButton">
-			<span class="navbar-toggler-icon"></span>
-		</button>
+			<div class="collapse navbar-collapse" id="navbarColor01">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link">Introduction</a>
+					</li>
 
-		<div class="collapse navbar-collapse" id="navbarColor01">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item">
-					<a class="nav-link">Home</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link">Introduction</a>
-				</li>
-
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">Setting the stack</a>
-					<div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 37px, 0px); top: 0px; left: 0px; will-change: transform;">
-						<a class="dropdown-item">Download and install</a>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</nav>
-
-		<div class="container mainContainer">
-			<div class="row">
-				<div class="col-12">
-					<h1> Automate your documentation with GitHub Actions</h1>
-					<quote>Created 12th December 2019 by Terazus</quote>
-					<hr>
-
-					<div id="introduction">
-						<h2> Introduction: </h2>
-						<p>
-							In this tutorial we are going to explore source code documentation through continuous integration
-							using a set of open source tools and a simple example. <br>
-							The first part of this tutorial will focus on setting up the project and writing the code and its documentation.
-							<br>
-							The second part will focus on how to continuously integrate your documentation. It will be language agnostic
-							and help you to set up a pipeline to automate the generation of the documentation.
-						</p>
-						<div class="summary">
-							<ul>
-								<li class="item">
-									<b>Time:</b> 1h
-								</li>
-								<li class="item">
-									<b>Difficulty:</b> medium
-								</li>
-								<li class="item">
-									<b>Stack:</b> JavaScript
-								</li>
-								<li class="item">
-									<b>Tools:</b> jsdoc (first part), GitHub (second part)
-								</li>
-								<li class="item">
-									<b>Requirements:</b> have a GitHub account; have NPM and Git installed.
-								</li>
-							</ul>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">Setting the stack</a>
+						<div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 37px, 0px); top: 0px; left: 0px; will-change: transform;">
+							<a class="dropdown-item">Download and install</a>
 						</div>
-						<p>
-							During the course of this tutorial, we are going to create a small DNA feature containing a name and a sequence, and represent
-							it on the DOM as a card.<br>
-							We will then create two buttons: one two trigger the transcription of the sequence into a RNA sequence, the other
-							to trigger its translation into a protein primary sequence.<br>
-							Here is it how it will look once implemented:
-						</p>
-						<div class="col col-4 centered">
-
-							<div class="card">
-								<div class="card-header">
-									<div id="name"></div>
-								</div>
-								<div class="card-body">
-									<div id="sequence">Feature sequence:</div>
-									<div id="#RNA"></div>
-									<div id="#Translated"></div>
-								</div>
-								<div class="card-footer">
-									<button id="transcribe" type="button" class="btn btn-primary" onclick="transcribe()">
-										Transcribe
-									</button>
-									<button type="button" class="btn btn-primary" onclick="translate()">
-										Translate
-									</button>
-								</div>
-							</div>
-						</div>
-						<div class="plan">
-							<h3>Tutorial plan:</h3>
-							<ul>
-								<li> Setting up the project on GitHub</li>
-								<li> Creating the components </li>
-								<li> Write the documentation </li>
-								<li> Generated a user-friendly documentation document</li>
-								<li> Ensure it's always updated with a workflow</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-
-			</div>
-
-			<div class="row" id="settingUp">
-				<h2> Setting up the project:</h2>
-				<p>
-					The final step of this tutorial will involve using GitHub Actions, so if not already not, head to
-					<a href="https://github.com" target="_blank">github.com</a> and create a new account.
-					You can then create a new project and clone it locally. We will not go through this process as there
-					are really plenty of tutorials out there. <br>
-					At the root of your project, create:
-				</p>
-				<ul>
-					<li> A file named package.json</li>
-					<li> A file named documentation.conf.json</li>
-					<li> A directory named src</li>
-					<li>
-						Inside src create:
-						<ul>
-							<li>A file named index.html</li>
-							<li>A file directory named components</li>
-						</ul>
 					</li>
 				</ul>
 			</div>
+		</nav>
 
+		<div class="container mainContainer">
+
+			<section class="row">
+				<div class="col col-12">
+					<img src="assets/actions_header.png">
+				</div>
+			</section>
+
+			<section class="row">
+				<div class="col col-12">
+					<h1> Automate your documentation with GitHub Actions</h1>
+					<blockquote>Created 12th December 2019 by Terazus</blockquote>
+					<hr>
+				</div>
+			</section>
+
+			<section class="row" id="introduction">
+				<div class="col col-12">
+					<h2> Introduction: </h2>
+					<p>
+						In this tutorial we are going to explore the new GitHub functionality that was released during
+						the GitHub Galaxy event that took place in November 2019. <br>
+						Some of you may have noticed a new tab in you GitHub repositories called <em>Actions</em> which are
+						automated workflow running on GitHub virtual machines (referred to as VM in this tutorial). <br>
+					</p>
+					<img src="assets/actions_tab.png" alt="The new GitHub action tab">
+					<p>
+						Throughout this tutorial we will explore this new functionality using a simple JavaScript application
+						for which we want to automate some development steps. <br>
+						The application will contain a very simple JavaScript class (and a data file) who which we have written
+						some code documentation using <a href="" target="_blank" class="jsdoc">jsdoc syntax</a>. <br>
+						The documentation is renewed using the command line: <br>
+					</p>
+					<pre class="code"> jsdoc -c documentation.conf.json </pre>
+					<p>
+						<b>Note:</b> <em>"-c"</em> points to a configuration file. We will set everything later on by forking a git repo. <br>
+						We want to automate the process of generating the documentation through this command line and always keep
+						the documentation on each of our github branches up-to-date with the code on that branch.
+					</p>
+					<div class="plan">
+						<h3>Plan:</h3>
+						<ul>
+							<li> <a href="#setting">Setting up the code </a></li>
+							<li> <a href="#local">Generating the documentation locally </a></li>
+							<li> <a href="#GH_actions">Generating the documentation on GitHub using a workflow</a></li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<section class="row" id="setting">
+				<div class="col col-12">
+					<h2> Setting up the project:</h2>
+
+					<p>
+						The source code required by this tutorial has been created for you and can be found inside this tutorial
+						directory. Head to <a class="repo" href="" target="_blank">this GitHub repo</a> and fork the repository to make it your own. Now clone it locally
+						to obtain this tree structure:
+					</p>
+					<pre class="code">
+│   .gitignore
+│   documentation.conf.json
+│   package.json
+│
+└───src
+    │   GeneFeature.js
+    │   index.html
+    │   main.css
+    │
+    ├───assets
+    │       actions_tab.png
+    │       new_project.png
+    │
+    └───components
+            codon.js
+            GeneFeature.js</pre>
+					<p> Now just run the above command to install all dependencies.
+					</p>
+					<pre class="code"> npm install</pre>
+					<p>
+						The <em>package.json</em> file contains all the library declaration npm needs to be aware of for installation. Some of these
+						libraries are used by the tutorial itself (like bootstrap), so if you only want the hard dependencies run the install in production mode. Once installed you can pop the application using:
+					</p>
+					<pre class="code"> serve</pre>
+					<p>
+						Now go to <a href="" class="localhost" target="_blank">http://localhost:5000/src</a>. If you don't see this page then something went wrong. You can use another web server if you feel like it (Apache, NGINX, ...),
+						it doesn't really matter.
+					</p>
+				</div>
+			</section>
+
+			<section class="row" id="local">
+				<div class="col col-12">
+					<h2>Generate the documentation locally</h2>
+					<p>
+						This step is going to be pretty easy as the class documentation has already been written for you. If you wish to explore it a little bit, just go to
+						<em> src/components/</em> to find the <em>GeneFeature.js</em> file. Now run:
+					</p>
+					<pre class="code"> npm run doc </pre>
+					<p>
+						This is an alias command borrowed from <em>package.json</em> under the <em>scripts</em> tag. Have a look
+						and see how the <em>doc</em> command actually runs jsdoc in the background. All configurations for jsdoc
+						to generate that documentation are located inside <em>documentation.conf.json</em>. Have a you look if you wish to
+						customize your documentation (change template and theme, change recursion depth, set up which files to be included or excluded, ...).
+						By running this command, your jsdoc comments in the code are parsed and translated into HTML, the results being outputted into the
+						<em>docs</em> directory. Here is how it should look like:
+					</p>
+					<iframe src="../docs/GeneFeature.html" width="100%" height="800px"></iframe>
+					<p>
+						With this system set up, every time we write a new piece of code and its documentation or modify an existing one, we need to manually rerun the npm command
+						that parses the files and generate our documentation in HTML. We then need to add these files to the current commit and push them on the remote branch.
+						<br> Pretty annoying and boring hein? Let's automate that so that we don't have to manually run these set of commands on every commit.
+					</p>
+				</div>
+			</section>
+
+			<section class="row" id="GH_actions">
+				<div class="col col-12">
+					<h2> Setting up an automated workflow</h2>
+					<p>
+						Now that we know our documentation works correctly, we will setup a GitHub workflow that pulls the current branch, triggers the <em>npm run doc</em> command and
+						pushes back the generated HTML files to the same branch. <br>
+						To do that, create a <em>.github</em> directory in the root of your project and inside it create a subdirectory named <em>workflows</em>. <br>
+						The <em>.github</em> directory is indicating GitHub that there are things it needs to deal with. For instance, some repositories may have a
+						<em>ISSUE_TEMPLATE</em> directory to set up templates for users to open new issues. <br>
+						Under <em>workflows</em> will be located all your Actions scripts. Create a new file and name it <em>documentation.yml</em>. Inside that file copy paste
+						the following code (we will review it in details in a moment).
+
+					</p>
+				</div>
+			</section>
+		</div>
+
+		<div class="container">
+			<div class="card">
+				<div class="card-header" id="name">
+				</div>
+				<div class="card-body">
+					<div id="sequence"></div>
+					<div id="RNA"></div>
+					<div id="Translated"></div>
+				</div>
+				<div class="card-footer">
+					<button type="button" class="btn btn-secondary" onclick="transcribe()">Transcribe</button>
+					<button type="button" class="btn btn-secondary" onclick="translate()">Translate</button>
+				</div>
+			</div>
 		</div>
 
 

@@ -4,16 +4,20 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+h3 {
+    font-size: 22px;
+    text-decoration: underline;
+}
+h2 {
+    color: #6D426D;
+}
+
 .mainContainer {
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
-#introduction {
-    margin-top:40px;
-}
-
-quote {
+blockquote {
     font-style: italic;
 }
 
@@ -30,5 +34,37 @@ quote {
 }
 
 .row {
-    margin-top: 40px;
+    margin-top: 20px;
+}
+
+img {
+    max-width: 100%;
+    margin:10px auto 20px auto;
+}
+
+.code {
+    min-width:30%;
+    margin-left:auto;
+    margin-right:auto;
+    left:0;
+    right:0;
+    display:block;
+    font-size:16px;
+    margin-bottom:20px;
+    border:1px solid #ccc;
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.15);
+    padding:10px;
+    text-align: left;
+}
+
+iframe {
+    margin: 20px 0;
+    border:2px solid #6D426D;
+}
+
+em {
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-style: initial;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 0 3px;
 }

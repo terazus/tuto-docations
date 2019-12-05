@@ -1,43 +1,43 @@
-/** Class to create and manipulate small gene features
-* @param {String} name - The name of the feature
-* @param {String} sequence - The sequence of the feature
-*/
-
 import {codons} from './codon.js';
 
-export class GeneFeature {
+/** Class to create and manipulate small gene features
+ * @param {String} name - The name of the feature
+ * @param {String} sequence - The sequence of the feature
+ */
+class GeneFeature {
 
 	constructor(name, sequence) {
 		let _name = name;
 		let _sequence = sequence;
 
-		/** A mapping object between the codons and the corresponding protein sequence */
+        /** Imported object mapping between the codons and the amino acids
+         */
 		this.mapping = codons;
 
-		/** Getter for the feature name
-		 * @returns {String} name
-		 */
-		this.getName = function(){
-			return _name;
-		};
+        /** Getter for the feature name
+         * @returns {String}
+         */
+        this.getName = function(){
+            return _name;
+        };
 
-		/** Getter for the feature sequence
-		 * @returns {String} sequence
-		 */
-		this.getSequence = function(){
-			return _sequence;
-		};
+        /** Getter for the feature sequence
+         * @returns {String} sequence
+         */
+        this.getSequence = function(){
+            return _sequence;
+        };
 	}
 
 	/** This method transcribes the feature by replacing Ts with Us
-	 * @returns {String} sequence - the RNA sequence transcribed from the DNA sequence
+     * @returns {String} sequence - the RNA sequence transcribed from the DNA sequence
 	 */
 	transcribe(){
 		return this.getSequence().replace(/T/g, "U");
 	};
 
 	/** This method translate the transcribe into a protein primary sequence.
-	 * @returns {string} translate - the protein primary sequence translated from that DNA feature
+     * @returns {string} translate - the protein primary sequence translated from that DNA feature
 	 */
 	translate(){
 		let translated = "";
@@ -59,3 +59,5 @@ export class GeneFeature {
 		return translated;
 	}
 }
+
+export default GeneFeature;
