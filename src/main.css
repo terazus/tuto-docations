@@ -6,12 +6,6 @@ body {
     font-size:1rem;
 }
 
-@media (max-width:700px){
-    body  {
-        font-size:1.2rem;
-    }
-}
-
 h3 {
     font-size: 22px;
     text-decoration: underline;
@@ -68,7 +62,7 @@ img {
 iframe {
     margin: 20px 0;
     border:2px solid #6D426D;
-    max-height:80vh;
+    max-height:60vh;
 }
 
 em {
@@ -112,4 +106,5 @@ pre {
     margin: 20px auto;
     color:white;
     background-color: #24292E;
+    overflow-y: scroll ;
 }
