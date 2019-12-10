@@ -22,7 +22,7 @@
 		window.transcribe = function(){
 			document.getElementById("RNA").innerHTML = "Transcript: " + RNA_sequence;
 		};
-		window.translate = function(){
+		window.translate_sequence = function(){
 			document.getElementById("Translated").innerHTML = "Protein sequence: " + translated;
 		}
 
@@ -161,7 +161,7 @@
 					</div>
 					<div class="card-footer">
 						<button type="button" class="btn btn-secondary" onclick="transcribe()">Transcribe</button>
-						<button type="button" class="btn btn-secondary" onclick="translate()">Translate</button>
+						<button type="button" class="btn btn-secondary" onclick="translate_sequence()">Translate</button>
 					</div>
 				</div>
 			</div>
