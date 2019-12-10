@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "doc": "jsdoc -c documentation.conf.json"
+    "doc": "jsdoc -c documentation.conf.json",
+    "doc:dev": "jsdoc -c documentation.conf.json -d docTemp"
   },
   "dependencies": {
     "jsdoc": "^3.6.3",
