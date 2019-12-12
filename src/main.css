@@ -107,3 +107,18 @@ pre {
     color:white;
     background-color: #24292E;
 }
+
+
+.imgAlign .col{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+}
+
+figcaption {
+    font-size: 0.8rem;
+    font-style: italic;
+    text-align: center;
+    margin-bottom:40px;
+}

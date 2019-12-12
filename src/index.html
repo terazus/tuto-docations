@@ -204,6 +204,7 @@
 			</p>
 			<pre class="code">serve</pre>
 			<p>
+				If you get a message that serve isn't installed, either user /node_module/path/to/jsdoc or install it globally with <em>npm install -g serve</em>.
 				Now go to <a href="" class="localhost" target="_blank">http://localhost:5000/src</a>. If you don't see this page then something went wrong. You could use another web server
 				(Apache, NGINX, ...), it doesn't really matter.
 			</p>
@@ -319,8 +320,19 @@ jobs:
 				<a target="_blank" href="https://github.com/elstudio/actions-js-build/blob/master/commit/entrypoint.sh"><em>entrypoint.sh</em></a>
 				file in the action repository.
 				<br> Now, push the project to your github repository, go to Actions, and watch the magic happen.</p>
-			<div>
-				<img src="assets/build.png" alt="The workflow output from github" class="buildImg">
+			<div class="container imgAlign">
+				<div class="row">
+					<div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12">
+						<img src="assets/build.png" alt="The workflow output from github using a manual action" class="buildImg">
+					</div>
+					<div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12">
+						<img src="assets/actions_auto.png" alt="The workflow output from github using an automated action" class="buildImg">
+					</div>
+					<div class="col col-12">
+						<figcaption>The GitHub console output for the manual (left) and integrated (right) actions of the
+							documentation workflow.</figcaption>
+					</div>
+				</div>
 			</div>
 			<p> Depending on the situation, you may want to wait until the build is finished and pull the code in your local branch.
 				The template we use timestamps the documentation files, so every time the workflow is triggered the documentation pages will change
