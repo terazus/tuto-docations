@@ -53,6 +53,10 @@
 				{
 					name: "nodeSetup",
 					link: "https://github.com/actions/setup-node"
+				},
+				{
+				    name: "ignoreBranch",
+					link: "https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#excluding-branches-and-tags"
 				}
 			];
 
@@ -138,14 +142,14 @@
 				In this tutorial we are going to explore the new GitHub functionality that was released during
 				the GitHub Galaxy event that took place in November 2019. <br>
 				Some of you may have noticed a new tab in you GitHub repositories called <em>Actions</em> which are
-				automated workflow running on GitHub virtual machines (referred to as VM in this tutorial).
+				automated workflows running on GitHub virtual machines (referred to as VM in this tutorial).
 			</p>
 			<img src="assets/actions_tab.png" alt="The new GitHub action tab">
 			<p>
 				Throughout this tutorial we will explore this new functionality using a simple JavaScript application
 				for which we want to automate some development steps. <br>
 				The application will contain a very simple JavaScript class (and a mapping file) for which we wrote
-				some code documentation using <a href="" target="_blank" class="jsdoc">jsdoc syntax</a>. Below is the
+				some code documentation using <a href="" target="_blank" class="jsdoc">jsdoc syntax</a>. Below is a
 				snippet we created with this small class:
 			</p>
 		</div>
@@ -194,14 +198,14 @@
 			</p>
 			<pre class="code"> npm install</pre>
 			<p>
-				The <em>package.json</em> file contains all the library declaration npm needs to be aware of for installation. Some of these
+				The <em>package.json</em> file contains all the library declarations npm needs for installation. Some of these
 				libraries are used by the tutorial itself (like bootstrap), so if you only want the hard dependencies (jsdoc and its templates)
 				run the install in production mode with <em>--production</em>. Once installed you can pop the application using:
 			</p>
 			<pre class="code">serve</pre>
 			<p>
-				Now go to <a href="" class="localhost" target="_blank">http://localhost:5000/src</a>. If you don't see this page then something went wrong. You can use another web server if you feel like it (Apache, NGINX, ...),
-				it doesn't really matter.
+				Now go to <a href="" class="localhost" target="_blank">http://localhost:5000/src</a>. If you don't see this page then something went wrong. You could use another web server
+				(Apache, NGINX, ...), it doesn't really matter.
 			</p>
 		</div>
 	</section>
@@ -223,13 +227,16 @@
 				to generate that documentation are located inside <em>documentation.conf.json</em>. Have a you look if you wish to
 				customize your documentation (change template and theme, change recursion depth, set up which files to be included or excluded, ...).
 				By running this command, your jsdoc comments in the code are parsed and translated into HTML, the results being outputted into the
-				<em>docTemp</em> directory. Here is how it should look like:
+				<em>docTemp</em> directory. <br>
+				Run <em>serve</em> again and go to <a href="http://localhost:5000/docTemp" target="_blank">http://localhost:5000/docTemp</a>
+				to display the current documentation; here is how it should look like:
 			</p>
 			<iframe src="../documentation/GeneFeature.html" width="100%" height="800px" onLoad="self.scrollTo(0,0)"></iframe>
 			<p>
 				With this system set up, every time we write a new piece of code and its documentation or modify an existing one, we need to manually rerun the npm command
 				that parses the files and generate our documentation in HTML. We then need to add these files to the current commit and push them on the remote branch.
-				<br> Pretty annoying and boring hein? Let's automate that so that we don't have to manually run these set of commands on every commit.
+				<br> This process can eventually become difficult to deal with, leading to merge conflicts between branches or a never up-to-date documentation. Let's automate it so that we don't have to
+				trigger the commands manually on each commit.
 			</p>
 		</div>
 	</section>
@@ -286,8 +293,8 @@ jobs:
 				Now that our code is cloned and our node version is selected we can install our libraries with <em>npm install</em>. Here we define
 				the steps by giving them a name that will be displayed in the github console. <br><br>
 				Everything is setup up so we can trigger the generation of our documentation with the command <em> npm run doc</em>. <br>
-				We are now at the final step which involves committing back to the current branch. We are going to use yet another integrated action
-				from <a href="https://github.com/elstudio/actions-js-build" target="_blank"><em>elstudio</em></a> that will handle that process for us.
+				We are now at the final step which involves committing back to the current branch. We are going to use yet another integrated action, this
+				time from <a href="https://github.com/elstudio/actions-js-build" target="_blank"><em>elstudio</em></a>, that will handle that process for us.
 				However, the following code should show you how to achieve this with a manual action:
 			</p>
 
@@ -325,6 +332,7 @@ jobs:
 				repository settings, give it a name, and replace <em>${{secrets.GITHUB_TOKEN}}</em> with it using
 				<em>${{secrets.MY_CUSTOM_SECRET}}</em>. Be careful, this token <b>CAN</b> trigger infinite loop actions
 				so you will need to tweak your commit action by committing only to one branch and excluding that branch from the workflow.
+				To exclude a branch, look at <a class="ignoreBranch" href="" target="_blank">this documentation</a>.
 				<br>
 				You can now get your badge and add it to your README.md file. It's easy:
 			</p>
